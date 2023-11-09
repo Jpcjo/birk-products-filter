@@ -10,7 +10,6 @@ import {
 const NavBar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [leftOffset, setLeftOffset] = useState(0);
-  const [dropdownTimer, setDropdownTimer] = useState(null); // New state for delay timer
   const navbarRef = useRef(null);
 
   const calculateLeftOffset = (index) => {
@@ -19,50 +18,39 @@ const NavBar = () => {
     setLeftOffset(offsetLeft);
   };
 
-  const handleHover = (index) => {
-    clearTimeout(dropdownTimer); // Clear the delay timer
-    setActiveDropdown(index);
-    calculateLeftOffset(index);
+  const handleClick = (index) => {
+    if (activeDropdown === index) {
+      // If the same button is clicked again, close the dropdown
+      setActiveDropdown(null);
+    } else {
+      // Open the dropdown for the clicked button
+      calculateLeftOffset(index);
+      setActiveDropdown(index);
+    }
   };
 
   const handleLeave = () => {
-    // Set a delay before hiding the dropdown
-    const timer = setTimeout(() => {
-      setActiveDropdown(null);
-    }, 350); // Adjust the delay time as needed (200ms in this example)
-    setDropdownTimer(timer); // Store the timer in state
-  };
-
-  const handleDropdownHover = () => {
-    clearTimeout(dropdownTimer); // Clear the delay timer when hovering over the dropdown
+    // Clear the active dropdown on mouse leave
+    setActiveDropdown(null);
   };
 
   const renderDropdownContent = (index) => {
     switch (index) {
       case 0:
         return (
-          <div
-            className="bg-white text-black p-4 "
-            onMouseEnter={handleDropdownHover} // Handle hover on the dropdown itself
-          >
+          <div className="bg-white text-black p-4">
             <Case0Women />
           </div>
         );
       case 1:
         return (
-          <div
-            className="bg-white text-black p-4"
-            onMouseEnter={handleDropdownHover}
-          >
+          <div className="bg-white text-black p-4">
             <Case1Men />
           </div>
         );
       case 2:
         return (
-          <div
-            className="bg-white text-black p-4"
-            onMouseEnter={handleDropdownHover}
-          >
+          <div className="bg-white text-black p-4">
             <Case2Kids />
           </div>
         );
@@ -78,15 +66,15 @@ const NavBar = () => {
   };
 
   return (
-    <section className="w-screen bg-black h-[40px] relative hidden lg:block">
+    <section className="w-screen bg-black h-[40px] relative lg:block">
       <div className="text-white text-sm tracking-widest h-full flex flex-row justify-center items-center space-x-3 ml-4 w-screen ">
         {navbar.map((nav, index) => (
           <div
             ref={navbarRef}
             key={index}
             className="relative group"
-            onTouchStart={() => handleHover(index)}
-            onTouchEnd={handleLeave}
+            onClick={() => handleClick(index)}
+            onMouseLeave={handleLeave}
           >
             <button className="navbar-button p-3 hover:underline underline-offset-4  duration-300">
               {nav}
@@ -95,7 +83,6 @@ const NavBar = () => {
               <div
                 className={`absolute w-screen top-full mt-[-4px] bg-white drop-shadow-xl z-[2000] `}
                 style={{ left: -leftOffset + "px" }}
-                onTouchStart={handleDropdownHover}
               >
                 {renderDropdownContent(index)}
               </div>
