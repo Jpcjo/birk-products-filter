@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide the default scrollbar (optional, you can remove this) */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: none;
+  border-radius: none;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: none;
+}
+
+/* WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: none;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: none;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none;
+  scrollbar-color: none;
+}
+
+/* Internet Explorer */
+* {
+  scrollbar-width: none;
+  scrollbar-base-color: none;
+}
+
+/* Hide the default scrollbar (optional, you can remove this) */
+/* ::-webkit-scrollbar {
+  width: 0.5em;
+} */
+
+/* Track */
+/* ::-webkit-scrollbar-track { */
+/* background: #f1f1f1;
+} */
+
+/* Handle */
+/* ::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 0.25em;
+} */
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */
+/* WebKit (Chrome, Safari) */
+/* ::-webkit-scrollbar {
+  width: 12px;
+} */
+
+/* ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+} */
+
+/* ::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+} */
+/* 
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */
+
+/* Firefox */
+/* * {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+} */
+
+/* Internet Explorer */
+/* * {
+  scrollbar-width: thin;
+  scrollbar-base-color: #888;
+} */
