@@ -184,10 +184,7 @@ const LeftSearch = () => {
                   : ""
               }`}
               key={categoryIndex}
-              onClick={
-                (() => handleCategoryChange(category),
-                () => handleAccordionToggle())
-              }
+              onClick={() => handleCategoryChange(category)}
             >
               {category}
             </button>
