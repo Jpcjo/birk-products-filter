@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import SmallScreenFilters from "./SmallScreenFilters";
-import { MdOutlineKeyboardArrowDown } from "react-icons/Md";
+import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import {
   isAccordionToggled,
@@ -86,7 +86,7 @@ const HideSmallFilter = () => {
                 <div className="flex">
                   {hideFilter[index]} ({totalItems}
                   {totalItems < 2 ? "  ITEM" : "  ITEMS"})
-                  <MdOutlineKeyboardArrowDown
+                  <IoIosArrowDown
                     className={`h-6 w-6 transform  ${
                       isOpen
                         ? "transition rotate-[180deg]  duration-300 "
