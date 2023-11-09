@@ -6,7 +6,7 @@ import {
   materials,
   occasions,
 } from "../utilis/productsData";
-import { MdOutlineKeyboardArrowDown } from "react-icons/Md";
+import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import {
   isSale,
@@ -142,7 +142,7 @@ const SmallScreenFilters = () => {
               >
                 {filtersSmallScreen[index]}
 
-                <MdOutlineKeyboardArrowDown
+                <IoIosArrowDown
                   className={`h-6 w-6 transform ${
                     isOpen
                       ? "transition rotate-[180deg]  duration-300 text-red-700"
