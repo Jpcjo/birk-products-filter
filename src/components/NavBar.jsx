@@ -35,22 +35,25 @@ const NavBar = () => {
   };
 
   const renderDropdownContent = (index) => {
+    const stopPropagation = (e) => {
+      e.stopPropagation();
+    };
     switch (index) {
       case 0:
         return (
-          <div className="bg-white text-black p-4">
+          <div className="bg-white text-black p-4" onClick={stopPropagation}>
             <Case0Women />
           </div>
         );
       case 1:
         return (
-          <div className="bg-white text-black p-4">
+          <div className="bg-white text-black p-4" onClick={stopPropagation}>
             <Case1Men />
           </div>
         );
       case 2:
         return (
-          <div className="bg-white text-black p-4">
+          <div className="bg-white text-black p-4" onClick={stopPropagation}>
             <Case2Kids />
           </div>
         );
