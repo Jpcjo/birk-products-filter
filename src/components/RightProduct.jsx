@@ -299,7 +299,7 @@ const RightProduct = () => {
         )}
       </div>
       {/* Pagination */}
-      <div className="flex  justify-between lg:justify-end  ">
+      <div className="flex  justify-end  ">
         {/* <h1 className="font-semibold text-2xl lg:hidden mb-4 mt-2">
           Women's Birkenstock Shoes
         </h1> */}
