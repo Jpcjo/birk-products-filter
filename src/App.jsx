@@ -16,7 +16,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 100); // Adjust the delay as needed
+    }, 140); // Adjust the delay as needed
   }, []);
 
   // useEffect(() => {
