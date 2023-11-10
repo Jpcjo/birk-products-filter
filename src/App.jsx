@@ -14,8 +14,14 @@ import {
 
 const App = () => {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 100); // Adjust the delay as needed
   }, []);
+
+  // useEffect(() => {
+  //   window.scrollTo({ top: 0, behavior: "smooth" });
+  // }, []);
 
   return (
     <>
