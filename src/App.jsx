@@ -20,7 +20,7 @@ const App = () => {
   return (
     <>
       <TopBrand />
-      <div className="h-[48px] bg-black"></div>
+
       <NavBar />
 
       <TopSlide />
