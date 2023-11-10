@@ -23,16 +23,28 @@ const TopBrand = () => {
     }
   };
 
+  const handleResize = () => {
+    // Close the sidebar when the window is resized
+    if (sidebarToggle) {
+      dispatch(isSidebarToggle());
+    }
+  };
+
   useEffect(() => {
     // Add scroll event listener when the component mounts
     window.addEventListener("scroll", handleScroll);
     // Call handleScroll once to initialize the state
     handleScroll();
-    // Clean up the event listener when the component unmounts
+
+    // Add resize event listener
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listeners when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [sidebarToggle]);
 
   return (
     <div
