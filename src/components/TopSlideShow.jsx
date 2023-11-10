@@ -14,7 +14,7 @@ const images = [birk05, birk03, birk08, birk01, birk04, birk02, birk09, birk10];
 
 const TopSlideShow = () => {
   return (
-    <div className="flex w-screen h-[150px] overflow-x-scroll ">
+    <div className="flex max-w-screen h-[150px] overflow-x-scroll ">
       {images.map((img, index) => {
         return <img src={img} key={index} className="object-cover" />;
       })}

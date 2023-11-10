@@ -20,9 +20,7 @@ const App = () => {
   return (
     <>
       <TopBrand />
-
       <NavBar />
-
       <TopSlide />
       <TopSlideShow />
 

@@ -37,7 +37,7 @@ const TopSlide = () => {
 
   return (
     <div
-      className="relative w-screen  h-8 bg-gray-100 text-black overflow-hidden font-semibold uppercase "
+      className="relative max-w-screen  h-8 bg-gray-100 text-black overflow-hidden font-semibold uppercase "
       onClick={() => isClose()}
     >
       <div

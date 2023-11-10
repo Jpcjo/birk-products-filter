@@ -34,7 +34,7 @@ const TopBrand = () => {
 
   return (
     <div
-      className={`w-screen  bg-black h-[48px] flex items-center justify-center sticky top-0 z-[2000] 
+      className={`max-w-screen  bg-black h-[48px] flex items-center justify-center sticky top-0 z-[2000] 
       `}
     >
       <div className={`fixed top-2 left-4 lg:hidden `} onClick={toggleSidebar}>

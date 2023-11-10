@@ -69,8 +69,8 @@ const NavBar = () => {
   };
 
   return (
-    <section className="w-screen bg-black h-[40px] relative hidden lg:block ">
-      <div className="text-white text-sm tracking-widest h-full flex flex-row justify-center items-center space-x-3 ml-4 w-screen ">
+    <section className="max-w-screen-[1281px] bg-black h-[40px] relative hidden lg:block ">
+      <div className="text-white text-sm tracking-widest h-full flex flex-row justify-center items-center space-x-3 ml-4 max-w-full">
         {navbar.map((nav, index) => (
           <div
             ref={navbarRef}
