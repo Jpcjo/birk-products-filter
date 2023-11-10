@@ -20,7 +20,9 @@ const App = () => {
   return (
     <>
       <TopBrand />
+      <div style={{ height: "48px" }}></div>
       <NavBar />
+
       <TopSlide />
       <TopSlideShow />
 
