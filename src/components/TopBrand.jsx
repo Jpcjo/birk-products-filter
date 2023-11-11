@@ -65,7 +65,7 @@ const TopBrand = () => {
       </div>
 
       <div
-        className={`fixed top-0 left-0 bg-white h-full w-[280px] p-4 transition z-[3000] ${
+        className={`fixed top-0 left-0 bg-white h-full w-[310px] p-4 transition z-[3000] ${
           sidebarToggle
             ? "transform translate-x-0"
             : "transform -translate-x-full"
