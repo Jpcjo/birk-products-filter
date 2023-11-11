@@ -46,7 +46,7 @@ const SideBar = () => {
       <div className="w-full max-h-fit">
         <div className={`flex justify-end `}>
           <AiOutlineClose
-            className={`text-gray-500 text-xl duration-300 hover:scale-110 mb-3 ${
+            className={`text-gray-500 text-xl duration-300 hover:scale-110 mb-3  ${
               sidebarToggle ? "block" : "hidden"
             }`}
             onClick={toggleSidebar}

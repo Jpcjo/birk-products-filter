@@ -51,6 +51,22 @@ const TopBrand = () => {
     };
   }, [sidebarToggle, subWomenClicked]);
 
+  useEffect(() => {
+    const body = document.body;
+
+    // Disable scrolling when the sidebar is open or sub-page is active
+    if (sidebarToggle) {
+      body.style.overflow = "hidden";
+    } else {
+      body.style.overflow = "unset"; // Re-enable scrolling
+    }
+
+    // Clean up
+    return () => {
+      body.style.overflow = "unset"; // Re-enable scrolling when the component unmounts
+    };
+  }, [sidebarToggle]);
+
   return (
     <div
       className={`max-w-screen  bg-black h-[48px] flex items-center justify-center sticky top-0 z-[2000] 
@@ -73,6 +89,13 @@ const TopBrand = () => {
       >
         {sidebarToggle ? <SideBar /> : ""}
       </div>
+
+      <div
+        className={`fixed top-0 left-0 bg-gray-800 bg-opacity-50 h-full w-screen ${
+          sidebarToggle ? "block" : "hidden"
+        }`}
+        onClick={toggleSidebar}
+      ></div>
 
       <h1
         className={`text-white text-3xl font-extrabold tracking-widest transition-transform duration-300   ml-4 ${
