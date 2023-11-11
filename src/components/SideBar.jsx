@@ -33,20 +33,11 @@ const SideBar = () => {
     setIsClicked(true);
   };
 
-  const handleMenuItemClick = (menuItem) => {
-    setActiveMenuItem(menuItem);
-    clickedSidebarItem();
-    dispatch(isSubWomenClicked());
-    // setFirstClick(firstClick + 1);
-    // if (firstClick > 0) {
-    //   dispatch(isSubWomenClicked());
-    // }
-    // Perform an action based on the selected menu item
-    // For now, we'll just log the item clicked
-    // console.log(`Clicked: ${menuItem}`);
-
-    // Close the sidebar after clicking a menu item
-  };
+  // const handleMenuItemClick = (menuItem) => {
+  //   setActiveMenuItem(menuItem);
+  //   clickedSidebarItem();
+  //   dispatch(isSubWomenClicked());
+  // };
 
   return (
     <div className={`flex lg:hidden w-full overflow-x-hidden  `}>

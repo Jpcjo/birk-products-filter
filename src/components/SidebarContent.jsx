@@ -18,15 +18,28 @@ const SidebarContent = () => {
 
   const [activeMenuItem, setActiveMenuItem] = useState(null);
 
+  console.log(activeMenuItem);
+
   const clickedSidebarItem = () => {
     setIsClicked(true);
   };
 
   const handleMenuItemClick = (menuItem) => {
+    if (menuItem === "REPAIRS" || menuItem === "SUSTAINABILITY") {
+      return; // Do nothing for "REPAIRS" and "SUSTAINABILITY"
+    }
     setActiveMenuItem(menuItem);
     clickedSidebarItem();
     dispatch(isSubWomenClicked());
   };
+
+  useEffect(() => {
+    if (!subWomenClicked) {
+      setIsClicked(false);
+      setActiveMenuItem(null); // Reset activeMenuItem when subWomenClicked changes
+    }
+  }, [subWomenClicked]);
+
   return (
     <>
       <ul
