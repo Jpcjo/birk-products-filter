@@ -18,10 +18,6 @@ const SidebarContent = () => {
 
   const [activeMenuItem, setActiveMenuItem] = useState(null);
 
-  //   const toggleSidebar = () => {
-  //     dispatch(isSidebarToggle());
-  //   };
-
   const clickedSidebarItem = () => {
     setIsClicked(true);
   };
