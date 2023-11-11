@@ -18,3 +18,4 @@ export { default as SidebarSubPage } from "./SidebarSubPage";
 export { default as SubWomen } from "./SubWomen";
 export { default as SubMen } from "./SubMen";
 export { default as SubKids } from "./SubKids";
+export { default as SidebarContent } from "./SidebarContent";

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { subSidebar } from "../utilis/productsData";
-import { SideBar } from "../components/index";
+import { SideBar, SidebarContent } from "../components/index";
 import { RiArrowRightSLine, RiArrowLeftSLine } from "react-icons/ri";
-import { isSubWomenClicked } from "../features/subSidebarSlice";
+import {
+  isSubWomenClicked,
+  isSubWomenClosed,
+} from "../features/subSidebarSlice";
 import { AiOutlineClose } from "react-icons/ai";
 import { isSidebarToggle } from "../features/dropdownToggleSlice";
 
@@ -11,14 +14,15 @@ const SubWomen = () => {
   const dispatch = useDispatch();
   const { subWomenClicked } = useSelector((state) => state.subSidebarState);
   const { sidebarToggle } = useSelector((state) => state.dropdownState);
+  // console.log("SubWomen", subWomenClicked);
 
   const clickToGoBack = () => {
-    dispatch(isSubWomenClicked());
+    dispatch(isSubWomenClosed());
   };
 
-  const toggleSidebar = () => {
-    dispatch(isSidebarToggle());
-  };
+  // const toggleSidebar = () => {
+  //   dispatch(isSidebarToggle());
+  // };
 
   return (
     <ul
@@ -30,14 +34,6 @@ const SubWomen = () => {
         ""
       ) : (
         <>
-          <div className="flex justify-end">
-            <AiOutlineClose
-              className={`text-gray-500 text-xl duration-300 hover:scale-110 mb-3 ${
-                sidebarToggle ? "block" : "hidden"
-              }`}
-              onClick={toggleSidebar}
-            />
-          </div>
           <button
             className="flex pb-3 items-center  border-b "
             onClick={clickToGoBack}
@@ -49,7 +45,7 @@ const SubWomen = () => {
       )}
 
       {!subWomenClicked ? (
-        <SideBar />
+        <SidebarContent />
       ) : (
         subSidebar.map((section, index) => {
           return (

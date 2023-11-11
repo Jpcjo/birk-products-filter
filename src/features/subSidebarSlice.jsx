@@ -9,11 +9,15 @@ const subSidebarSlice = createSlice({
   initialState,
   reducers: {
     isSubWomenClicked: (state) => {
-      state.subWomenClicked = !state.subWomenClicked;
+      state.subWomenClicked = true;
+    },
+
+    isSubWomenClosed: (state) => {
+      state.subWomenClicked = false;
     },
   },
 });
 
-export const { isSubWomenClicked } = subSidebarSlice.actions;
+export const { isSubWomenClicked, isSubWomenClosed } = subSidebarSlice.actions;
 
 export default subSidebarSlice.reducer;
