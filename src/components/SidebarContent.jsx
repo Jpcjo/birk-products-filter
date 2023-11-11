@@ -67,7 +67,7 @@ const SidebarContent = () => {
       <div
         className={`transition-transform max-w-full transform duration-500 ease-in-out  ${
           isClicked ? " translate-x-0" : "translate-x-full"
-        }`}
+        } `}
       >
         {activeMenuItem === "WOMEN" && <SubWomen />}
         {activeMenuItem === "MEN" && <SubMen />}
