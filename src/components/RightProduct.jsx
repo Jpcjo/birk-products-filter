@@ -44,6 +44,8 @@ const RightProduct = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [loading, setLoading] = useState(false);
+  console.log(loading);
 
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = currentPage * productsPerPage;
@@ -147,12 +149,29 @@ const RightProduct = () => {
   const totalPages = Math.ceil(totalItems / productsPerPage);
 
   const handlePageChange = (page) => {
+    setLoading(true);
     setCurrentPage(page);
   };
 
   useEffect(() => {
+    setLoading(true);
     setCurrentPage(1);
-  }, [defaultOption, saleOnly, newArrivalOnly]);
+  }, [
+    defaultOption,
+    saleOnly,
+    newArrivalOnly,
+    defaultCategory,
+    minPrice,
+    maxPrice,
+    defaultColour,
+    defaultMaterial,
+    defaultOccasion,
+    totalItems,
+  ]);
+
+  useEffect(() => {
+    setLoading(false); // set loading to false once newFilteredProducts is populated
+  }, [newFilteredProducts]);
 
   const isClose = () => {
     dispatch(closeDropdown()); // Close the dropdown
@@ -228,7 +247,11 @@ const RightProduct = () => {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 md:gap-x-6 lg:gap-x-8 gap-y-4">
-        {newFilteredProducts.length === 0 ? (
+        {loading ? (
+          <div className="font-semibold text-xl grid text-gray-600  ">
+            Loading...
+          </div>
+        ) : newFilteredProducts.length === 0 ? (
           <div className="font-semibold text-xl grid text-gray-600  ">
             Sorry. No Result.
           </div>
@@ -362,6 +385,7 @@ export default RightProduct;
 //   selectedColour,
 //   selectedMaterial,
 //   selectedOccasion,
+//   filteredTotalItems,
 // } from "../features/dropdownToggleSlice";
 
 // const RightProduct = () => {
@@ -376,6 +400,7 @@ export default RightProduct;
 //     defaultColour,
 //     defaultMaterial,
 //     defaultOccasion,
+//     totalItems,
 //   } = useSelector((state) => state.dropdownState);
 
 //   const productsPerPage = 24;
@@ -390,112 +415,110 @@ export default RightProduct;
 
 //   // const currentProducts = sandals.slice(startIndex, endIndex);
 
-//   const [filteredProducts, setFilteredProducts] = useState([...sandals]);
+//   let filteredProducts = [...sandals]; // Default to showing all products
 
-//   useEffect(() => {
-//     let newFiltered = [...sandals];
+//   if (defaultOption === "Popularity") {
+//     filteredProducts = [...sandals];
+//   } else if (defaultOption === "New Arrivals") {
+//     filteredProducts = sandals.filter(
+//       (product) => product.newArrivalsOnly === true
+//     );
+//   } else if (defaultOption === "Price High To Low") {
+//     filteredProducts = filteredProducts.sort((a, b) => {
+//       const aPrice = a.salePrice || a.price;
+//       const bPrice = b.salePrice || b.price;
+//       return bPrice - aPrice;
+//     });
+//   } else if (defaultOption === "Price Low To High") {
+//     filteredProducts = filteredProducts.sort((a, b) => {
+//       const aPrice = a.salePrice || a.price;
+//       const bPrice = b.salePrice || b.price;
+//       return aPrice - bPrice;
+//     });
+//   } else if (defaultOption === "Sale") {
+//     filteredProducts = sandals.filter(
+//       (product) => product.salePrice !== undefined
+//     );
+//   }
 
-//     if (defaultOption === "New Arrivals") {
-//       newFiltered = newFiltered.filter(
-//         (product) => product.newArrivalsOnly === true
-//       );
-//     } else if (defaultOption === "Price High To Low") {
-//       newFiltered = newFiltered.sort((a, b) => {
-//         const aPrice = a.salePrice || a.price;
-//         const bPrice = b.salePrice || b.price;
-//         return bPrice - aPrice;
+//   const min = parseFloat(minPrice);
+//   const max = parseFloat(maxPrice);
+
+//   if (!isNaN(min) && !isNaN(max)) {
+//     // Both min and max are provided
+//     if (min <= max) {
+//       // Filter products based on minPrice and maxPrice
+//       filteredProducts = filteredProducts.filter((product) => {
+//         const productPrice = product.salePrice || product.price;
+//         return productPrice >= min && productPrice <= max;
 //       });
-//     } else if (defaultOption === "Price Low To High") {
-//       newFiltered = newFiltered.sort((a, b) => {
-//         const aPrice = a.salePrice || a.price;
-//         const bPrice = b.salePrice || b.price;
-//         return aPrice - bPrice;
-//       });
-//     } else if (defaultOption === "Sale") {
-//       newFiltered = newFiltered.filter(
-//         (product) => product.salePrice !== undefined
-//       );
+//     } else {
+//       alert("Maximum price should be greater than or equal to minimum price");
 //     }
+//   } else if (!isNaN(min)) {
+//     // Only min is provided
+//     filteredProducts = filteredProducts.filter((product) => {
+//       const productPrice = product.salePrice || product.price;
+//       return productPrice >= min;
+//     });
+//   } else if (!isNaN(max)) {
+//     // Only max is provided
+//     filteredProducts = filteredProducts.filter((product) => {
+//       const productPrice = product.salePrice || product.price;
+//       return productPrice <= max;
+//     });
+//   }
 
-//     const min = parseFloat(minPrice);
-//     const max = parseFloat(maxPrice);
+//   if (defaultCategory === categories[0]) {
+//     filteredProducts;
+//   } else if (defaultCategory !== categories[0]) {
+//     filteredProducts = filteredProducts.filter(
+//       (product) => product.category === defaultCategory
+//     );
+//   }
 
-//     if (!isNaN(min) && !isNaN(max)) {
-//       if (min <= max) {
-//         setTimeout(() => {
-//           newFiltered = newFiltered.filter((product) => {
-//             const productPrice = product.salePrice || product.price;
-//             return productPrice >= min && productPrice <= max;
-//           });
-//           setFilteredProducts(newFiltered); // Update the state after the delay
-//         }, 1200); // 1000 milliseconds (1 second) delay
-//       } else {
-//         alert("Maximum price should be greater than or equal to minimum price");
-//       }
-//     } else if (!isNaN(min)) {
-//       setTimeout(() => {
-//         newFiltered = newFiltered.filter((product) => {
-//           const productPrice = product.salePrice || product.price;
-//           return productPrice >= min;
-//         });
-//         setFilteredProducts(newFiltered); // Update the state after the delay
-//       }, 1200);
-//     } else if (!isNaN(max)) {
-//       setTimeout(() => {
-//         newFiltered = newFiltered.filter((product) => {
-//           const productPrice = product.salePrice || product.price;
-//           return productPrice <= max;
-//         });
-//         setFilteredProducts(newFiltered); // Update the state after the delay
-//       }, 1200);
-//     }
+//   if (defaultColour === colours[0]) {
+//     filteredProducts;
+//   } else if (defaultColour !== colours[0]) {
+//     filteredProducts = filteredProducts.filter(
+//       (product) => product.color === defaultColour
+//     );
+//   }
 
-//     if (defaultCategory !== categories[0]) {
-//       newFiltered = newFiltered.filter(
-//         (product) => product.category === defaultCategory
-//       );
-//     }
+//   if (defaultMaterial === materials[0]) {
+//     filteredProducts;
+//   } else if (defaultMaterial !== materials[0]) {
+//     filteredProducts = filteredProducts.filter(
+//       (product) => product.material === defaultMaterial
+//     );
+//   }
 
-//     if (defaultColour !== colours[0]) {
-//       newFiltered = newFiltered.filter(
-//         (product) => product.color === defaultColour
-//       );
-//     }
-
-//     if (defaultMaterial !== materials[0]) {
-//       newFiltered = newFiltered.filter(
-//         (product) => product.material === defaultMaterial
-//       );
-//     }
-
-//     if (defaultOccasion !== occasions[0]) {
-//       newFiltered = newFiltered.filter(
-//         (product) => product.occasion === defaultOccasion
-//       );
-//     }
-
-//     setFilteredProducts(newFiltered);
-//   }, [
-//     defaultOption,
-//     minPrice,
-//     maxPrice,
-//     defaultCategory,
-//     defaultColour,
-//     defaultMaterial,
-//     defaultOccasion,
-//   ]);
-
-//   // useEffect(() => {
-//   //   // Your pagination code here
-//   // }, [currentPage, filteredProducts]);
+//   if (defaultOccasion === occasions[0]) {
+//     filteredProducts;
+//   } else if (defaultOccasion !== occasions[0]) {
+//     filteredProducts = filteredProducts.filter(
+//       (product) => product.occasion === defaultOccasion
+//     );
+//   }
 
 //   let newFilteredProducts = filteredProducts.slice(startIndex, endIndex);
-//   const totalFilteredProducts = filteredProducts.length;
-//   const totalPages = Math.ceil(totalFilteredProducts / productsPerPage);
+//   useEffect(() => {
+//     dispatch(filteredTotalItems(filteredProducts.length));
+//   }, [dispatch, filteredProducts, totalItems]);
+
+//   // const totalFilteredProducts = dispatch(
+//   //   filteredTotalItems(filteredProducts.length)
+//   // );
+//   const totalPages = Math.ceil(totalItems / productsPerPage);
 
 //   const handlePageChange = (page) => {
 //     setCurrentPage(page);
 //   };
+
+//   useEffect(() => {
+//     setCurrentPage(1);
+//   }, [defaultOption, saleOnly, newArrivalOnly]);
+
 //   const isClose = () => {
 //     dispatch(closeDropdown()); // Close the dropdown
 //   };
@@ -527,15 +550,15 @@ export default RightProduct;
 //   //   }, [currentPage]);
 
 //   useEffect(() => {
-//     window.scrollTo(0, 220);
+//     window.scrollTo(0, 190);
 //   }, [currentPage]);
 
 //   return (
 //     <div className="w-screen lg:w-[73%] min-h-screen lg:ml-4">
 //       {/* Pagination */}
-//       <div className="flex  justify-between lg:justify-end  ">
-//         <h1 className="font-semibold text-2xl lg:hidden mb-4 mt-2">
-//           Women's Birkenstock Shoes
+//       <div className="flex  justify-end lg:justify-end  ">
+//         <h1 className="font-semibold text-2xl hidden mb-4 mt-2">
+//           Women's Birkenstock
 //         </h1>
 //         <div className="flex justify-end items-center h-[50px]">
 //           {showPrevArrow && totalPages > 1 && (
@@ -641,10 +664,10 @@ export default RightProduct;
 //         )}
 //       </div>
 //       {/* Pagination */}
-//       <div className="flex  justify-between lg:justify-end  ">
-//         <h1 className="font-semibold text-2xl lg:hidden mb-4 mt-2">
+//       <div className="flex  justify-end  ">
+//         {/* <h1 className="font-semibold text-2xl lg:hidden mb-4 mt-2">
 //           Women's Birkenstock Shoes
-//         </h1>
+//         </h1> */}
 //         <div className="flex justify-end items-center h-[50px]">
 //           {showPrevArrow && totalPages > 1 && (
 //             <button
