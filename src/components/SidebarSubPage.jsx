@@ -16,7 +16,6 @@ const SidebarSubPage = () => {
             >
               <li
                 className={`text-black cursor-pointer hover:text-gray-400 pb-3 border-b  `}
-                //   onClick={() => handleMenuItemClick(section)}
               >
                 {section}
               </li>

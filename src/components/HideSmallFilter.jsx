@@ -2,21 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import SmallScreenFilters from "./SmallScreenFilters";
 import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  isAccordionToggled,
-  isSmallAccordionToggled,
-  individualContentHeight,
-} from "../features/dropdownToggleSlice";
+import { isSmallAccordionToggled } from "../features/dropdownToggleSlice";
 
 const HideSmallFilter = () => {
-  //   const [forceRerender, setForceRerender] = useState(false);
-
-  //   useEffect(() => {
-  //     setTimeout(() => {
-  //       setForceRerender(true);
-  //     }, 100);
-  //   }, []);
-
   const dispatch = useDispatch();
   const { accordionToggle, smallAccordionToggle, contentHeight, totalItems } =
     useSelector((state) => state.dropdownState);
@@ -47,22 +35,11 @@ const HideSmallFilter = () => {
       const newHeights = contentRefs.current.map((ref) => {
         const ownHeight = ref.current ? ref.current.offsetHeight : 0;
         const contentFilterHeight = accordionToggle ? contentHeight[0] : 0;
-        // console.log(contentHeight[0]);
-
         return ownHeight + 315;
       });
       setContentHeights(newHeights);
     }
   }, [accordions, accordionToggle, smallAccordionToggle, contentHeight]);
-
-  //   useEffect(() => {
-  //     if (accordions.some((isOpen) => isOpen)) {
-  //       const newHeights = contentRefs.current.map((ref) => {
-  //         return ref.current ? ref.current.offsetHeight : 0;
-  //       });
-  //       setContentHeights(newHeights);
-  //     }
-  //   }, [accordions, isAccordionToggled, isSmallAccordionToggled]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -94,7 +71,6 @@ const HideSmallFilter = () => {
                     } `}
                   />
                 </div>
-                {/* <div className="text-xs text-white">({totalItems} ITEMS)</div> */}
               </button>
 
               <div

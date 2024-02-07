@@ -25,7 +25,6 @@ import {
   isClearAllBtnClicked,
   isError,
 } from "../features/priceInputSlice";
-import { SideSlideShow } from "./index";
 import { PriceFilter } from ".";
 
 const SmallScreenFilters = () => {
@@ -86,9 +85,6 @@ const SmallScreenFilters = () => {
   const [accordions, setAccordions] = useState(
     Array(filtersSmallScreen.length).fill(false)
   );
-  //   const [contentHeights, setContentHeights] = useState(
-  //     Array(filtersSmallScreen.length).fill(0)
-  //   );
 
   const handleAccordionToggle = () => {
     dispatch(isAccordionToggled());

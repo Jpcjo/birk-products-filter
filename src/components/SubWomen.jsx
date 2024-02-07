@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { subSidebar } from "../utilis/productsData";
-import { SideBar, SidebarContent } from "../components/index";
 import { RiArrowRightSLine, RiArrowLeftSLine } from "react-icons/ri";
-import {
-  isSubWomenClicked,
-  isSubWomenClosed,
-} from "../features/subSidebarSlice";
-import { AiOutlineClose } from "react-icons/ai";
-import { isSidebarToggle } from "../features/dropdownToggleSlice";
+import { isSubWomenClosed } from "../features/subSidebarSlice";
 
 const SubWomen = () => {
   const dispatch = useDispatch();
   const { subWomenClicked } = useSelector((state) => state.subSidebarState);
   const { sidebarToggle } = useSelector((state) => state.dropdownState);
   const [isClicked, setIsClicked] = useState(false);
-  // console.log("SubWomen", subWomenClicked);
-  console.log(isClicked);
 
   const clickToGoBack = () => {
     dispatch(isSubWomenClosed());

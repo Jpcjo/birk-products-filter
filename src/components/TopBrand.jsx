@@ -1,10 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { SideBar } from "../components";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { isSidebarToggle } from "../features/dropdownToggleSlice";
-import { isSubWomenClicked } from "../features/subSidebarSlice";
 
 const TopBrand = () => {
   const dispatch = useDispatch();
@@ -14,8 +12,6 @@ const TopBrand = () => {
   const toggleSidebar = () => {
     dispatch(isSidebarToggle());
   };
-
-  // console.log("Top Brand:", subWomenClicked);
 
   const [isScrolled, setIsScrolled] = useState(true);
 

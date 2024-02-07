@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { summer00, summer01, summer02, summer03 } from "../utilis/productsData";
-
-// const images = [summer00, summer01, summer02, summer03];
 
 const SideSlideShow = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

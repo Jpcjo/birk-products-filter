@@ -19,10 +19,6 @@ const App = () => {
     }, 140); // Adjust the delay as needed
   }, []);
 
-  // useEffect(() => {
-  //   window.scrollTo({ top: 0, behavior: "smooth" });
-  // }, []);
-
   return (
     <>
       <TopBrand />

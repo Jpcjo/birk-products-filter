@@ -39,8 +39,6 @@ const LeftSearch = () => {
 
   const { error } = useSelector((state) => state.priceInputState);
 
-  // console.log(newArrivalOnly);
-
   const [isResizing, setIsResizing] = useState(false);
 
   const handleSaleChange = () => {
@@ -128,33 +126,6 @@ const LeftSearch = () => {
     }
   }, [accordions, error]);
 
-  //   useEffect(() => {
-  //     // Scroll to the "Category" section when the component mounts or when refreshed
-  //     if (window.location.hash === "") {
-  //       // Scroll to the "Category" section if no hash is present
-  //       const categorySection = document.getElementById("category-section");
-  //       if (categorySection) {
-  //         const offset = categorySection.offsetTop;
-  //         window.scrollTo({ top: offset, behavior: "smooth" });
-  //       }
-  //     }
-  //   }, []);
-
-  //   useEffect(() => {
-  //     // Check if the scrollbar is at the bottom
-  //     const isScrollAtBottom =
-  //       window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
-
-  //     if (isScrollAtBottom) {
-  //       // If at the bottom, scroll to the Category section
-  //       const categorySection = document.getElementById("category-section");
-  //       if (categorySection) {
-  //         const offset = categorySection.offsetTop;
-  //         window.scrollTo({ top: offset, behavior: "smooth" });
-  //       }
-  //     }
-  //   }, []);
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -169,12 +140,7 @@ const LeftSearch = () => {
         Women's Birkenstock Shoes
       </h1>
       <div className="mr-2 ml-2 flex flex-col space-y-4 items-start text-gray-400 text-sm">
-        <h2
-          className="py-2 border-y text-gray-600 text-lg w-full"
-          //   id="category-section"
-        >
-          Category
-        </h2>
+        <h2 className="py-2 border-y text-gray-600 text-lg w-full">Category</h2>
         {categories.map((category, categoryIndex) => {
           return (
             <button
@@ -204,28 +170,6 @@ const LeftSearch = () => {
 
         {/* accordins */}
         <section className="mb-4 w-full">
-          {/* <div className="form-control">
-            <label className="label cursor-pointer py-3 px-0 border-b">
-              <span className="label-text text-base  text-gray-500 ">
-                Sale Only
-              </span>
-              <input
-                type="checkbox"
-                className="toggle toggle-sm"
-                onChange={handleSaleChange}
-              />
-            </label>
-            <label className="label cursor-pointer  py-3 px-0 border-b">
-              <span className="label-text text-base  text-gray-500  ">
-                New Arrivals Only
-              </span>
-              <input
-                type="checkbox"
-                className="toggle toggle-sm"
-                onChange={handleNewArrivalChange}
-              />
-            </label>
-          </div> */}
           {accordions.map((isOpen, index) => (
             <div key={index} className="relative rounded-lg">
               <button

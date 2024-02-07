@@ -14,12 +14,3 @@ const store = configureStore({
 });
 
 export default store;
-
-// import { configureStore } from "@reduxjs/toolkit";
-// import dropdownToggleReducer from "./features/dropdownToggleSlice";
-
-// export const store = configureStore({
-//   reducer: {
-//     dropdownState: dropdownToggleReducer,
-//   },
-// });

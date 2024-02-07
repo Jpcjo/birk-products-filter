@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { isSidebarToggle } from "../features/dropdownToggleSlice";
-import { AiOutlineClose } from "react-icons/ai";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { navbar } from "../utilis/productsData";
-import { SidebarSubPage, SubMen, SubWomen, SubKids } from "../components/index";
+import { SubMen, SubWomen, SubKids } from "../components/index";
 import { isSubWomenClicked } from "../features/subSidebarSlice";
 
 const SidebarContent = () => {
@@ -14,11 +11,7 @@ const SidebarContent = () => {
   const { subWomenClicked } = useSelector((state) => state.subSidebarState);
   const [isClicked, setIsClicked] = useState(false);
 
-  //   console.log("SidebarContent", subWomenClicked);
-
   const [activeMenuItem, setActiveMenuItem] = useState(null);
-
-  console.log(activeMenuItem);
 
   const clickedSidebarItem = () => {
     setIsClicked(true);
